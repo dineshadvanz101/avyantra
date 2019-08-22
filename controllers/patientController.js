@@ -77,33 +77,19 @@ var baby_respiratory_support = JSON.parse(req.body.baby_resp.baby_respiratory_su
 
 req.body.baby_resp.baby_respiratory_support=baby_respiratory_support
 
-pReadingModels.baby_appear_model.create(req.body.baby_appears).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_appear_model.create(req.body.baby_appears).then()
 
-pReadingModels.baby_resp_model.create(req.body.baby_resp).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_resp_model.create(req.body.baby_resp).then()
 
-pReadingModels.baby_cv_model.create(req.body.baby_cv).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_cv_model.create(req.body.baby_cv).then()
 
-pReadingModels.baby_cns_model.create(req.body.baby_cns).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_cns_model.create(req.body.baby_cns).then()
 
-pReadingModels.baby_git_model.create(req.body.baby_git).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_git_model.create(req.body.baby_git).then()
 
-pReadingModels.baby_final_model.create(req.body.baby_final).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_final_model.create(req.body.baby_final).then()
 
-pReadingModels.baby_antibiotic_model.create(req.body.baby_antibiotic).then().catch(err => {
-  console.log("error:",err)
- })
+pReadingModels.baby_antibiotic_model.create(req.body.baby_antibiotic).then()
 
 pReadingModels.baby_investigation_model.create(req.body.baby_investigation).then(result => {
     res.json( responseHelper.success(constant.data_created_successfully,req.body))})
@@ -113,16 +99,11 @@ pReadingModels.baby_investigation_model.create(req.body.baby_investigation).then
 }
 
 exports.getBabyAppearsModel =(req,res,next) =>{
-
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_appears_infos pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -133,15 +114,11 @@ exports.getBabyAppearsModel =(req,res,next) =>{
 }
 
 exports.getBabyRespModel =(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_resp_infos pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -152,15 +129,11 @@ exports.getBabyRespModel =(req,res,next)=>{
 }
 
 exports.getBabyCVModel =(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_cv_infos pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -171,15 +144,11 @@ exports.getBabyCVModel =(req,res,next)=>{
 }
 
 exports.getBabyCNSModel=(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_cns_infos pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -190,15 +159,11 @@ exports.getBabyCNSModel=(req,res,next)=>{
 }
 
 exports.getBabyGITModel=(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_git_infos pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -209,15 +174,11 @@ exports.getBabyGITModel=(req,res,next)=>{
 }
 
 exports.getBabyInvestigationModel =(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_investigations pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -228,15 +189,11 @@ exports.getBabyInvestigationModel =(req,res,next)=>{
 }
 
 exports.getBabyAntibioticModel =(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_antibiotics pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -247,15 +204,11 @@ exports.getBabyAntibioticModel =(req,res,next)=>{
 }
 
 exports.getBabyFinalModel=(req,res,next)=>{
-  var study_id=req.params.studyId
-  var hospital_id=req.params.hospitalId
-  var reading=req.params.readingId
-
   sequelize.query('SELECT  DISTINCT * FROM patient_baby_finals pbai  JOIN patient_basic_infos pbi ON  pbai.study_id = pbi.id WHERE study_id =:study_id AND hospital_id=:hospital_id AND reading = :reading LIMIT 1',
   { replacements: { 
-    study_id:study_id,
-    hospital_id:hospital_id,
-    reading:reading
+    study_id:req.params.studyId,
+    hospital_id:req.params.hospitalId,
+    reading:req.params.readingId
   }, type: sequelize.QueryTypes.SELECT }
   ).then(result => {
     res.json( responseHelper.success(constant.success,result))
@@ -277,7 +230,6 @@ exports.getReadingIdByStudyId = (req ,res , next)=>{
     }
     )
   .then(result =>{
-    console.log('result :' ,result.length)
      if(result.length == 0){
       res.json(responseHelper.success(constant.data_created_successfully,
         {
@@ -360,9 +312,7 @@ exports.getPatientModels =(req,res,next)=>{
     }
 
   pReadingModels.baby_appear_model.findAll(
-    { 
-    where :
-    {
+    {  where :{
       study_id:req.params.studyId,
     },
     order:[
@@ -370,22 +320,15 @@ exports.getPatientModels =(req,res,next)=>{
      ],
      limit: 1
     }).then(result => {
-
       if(result.length == 0){
-        
         res.json( responseHelper.notFound(constant.no_record_found))
-
       }
-
       models.baby_appears=result[0]
-    }).catch(err => {
-         console.log("error :" ,err)
     })
 
     pReadingModels.baby_resp_model.findAll(
       { 
-      where :
-      {
+      where : {
         study_id:req.params.studyId,
       },
       order:[
@@ -394,14 +337,10 @@ exports.getPatientModels =(req,res,next)=>{
        limit: 1
       }).then(result => {
         models.baby_resp=result[0]
-      }).catch(err => {
-           console.log("error :" ,err)
       })
 
       pReadingModels.baby_cv_model.findAll(
-        { 
-        where :
-        {
+        {  where :{
           study_id:req.params.studyId,
         },
         order:[
@@ -410,14 +349,10 @@ exports.getPatientModels =(req,res,next)=>{
          limit: 1
         }).then(result => {
           models.baby_cv=result[0]
-        }).catch(err => {
-             console.log("error :" ,err)
         })
 
         pReadingModels.baby_cns_model.findAll(
-          { 
-          where :
-          {
+          { where :{
             study_id:req.params.studyId,
           },
           order:[
@@ -426,14 +361,10 @@ exports.getPatientModels =(req,res,next)=>{
            limit: 1
           }).then(result => {
             models.baby_cns=result[0]
-          }).catch(err => {
-               console.log("error :" ,err)
           })
 
           pReadingModels.baby_git_model.findAll(
-            { 
-            where :
-            {
+            {  where :{
               study_id:req.params.studyId,
             },
             order:[
@@ -442,15 +373,10 @@ exports.getPatientModels =(req,res,next)=>{
              limit: 1
             }).then(result => {
               models.baby_git=result[0]
-             
-            }).catch(err => {
-                 console.log("error :" ,err)
             })
 
             pReadingModels.baby_investigation_model.findAll(
-              { 
-              where :
-              {
+              { where :{
                 study_id:req.params.studyId,
               },
               order:[
@@ -458,16 +384,11 @@ exports.getPatientModels =(req,res,next)=>{
                ],
                limit: 1
               }).then(result => {
-                models.baby_investigation=result[0]
-                
-              }).catch(err => {
-                   console.log("error :" ,err)
+                models.baby_investigation=result[0]     
               })
 
               pReadingModels.baby_antibiotic_model.findAll(
-                { 
-                where :
-                {
+                { where :{
                   study_id:req.params.studyId,
                 },
                 order:[
@@ -476,14 +397,10 @@ exports.getPatientModels =(req,res,next)=>{
                  limit: 1
                 }).then(result => {
                   models.baby_antibiotic=result[0]
-                }).catch(err => {
-                     console.log("error :" ,err)
                 })
 
                 pReadingModels.baby_final_model.findAll(
-                  { 
-                  where :
-                  {
+                  {  where :{
                     study_id:req.params.studyId,
                   },
                   order:[
@@ -496,18 +413,14 @@ exports.getPatientModels =(req,res,next)=>{
                   }).catch(err => {
                     res.json(responseHelper.serveError(constant.error_msg,err))
                   })
-
 }
 
 exports.updateBabyAppearsModel = (req, res , next)=>{
-
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
   }
-
   pReadingModels.baby_appear_model.findAll(
     { where :
       {
@@ -515,15 +428,10 @@ exports.updateBabyAppearsModel = (req, res , next)=>{
         reading :req.params.reading
       }
     }).then(result => {
-
       if(result.length == 0){
-     
         res.json( responseHelper.notFound(constant.no_record_found))
-  
        } else{
-
      result = mapper.babyAppearsMapper(result[0],req)
-
      return result.save()
        }
    })
@@ -536,9 +444,7 @@ exports.updateBabyAppearsModel = (req, res , next)=>{
 }
 
 exports.updateBabyRespModel = (req,res,next) => {
-
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
@@ -548,36 +454,18 @@ exports.updateBabyRespModel = (req,res,next) => {
       {
         study_id:req.params.study_id,
         reading :req.params.reading
-      }
+      },
+      order:[
+        ['createdAt', 'DESC']
+       ],
+       limit: 1
     }).then(result => {
-
-      console.log("baby resp model response :" , result)
-
       if(result.length == 0){
-     
         res.json( responseHelper.notFound(constant.no_record_found))
-  
        }else{
-     var row = result[0]
      var baby_respiratory_support = JSON.parse(req.body.baby_respiratory_support); 
-     row.groaning =  req.body.groaning,
-     row.grunting = req.body.grunting,
-     row.stridor = req.body.stridor,
-     row.retraction = req.body.retraction,
-     row.fast_breathing = req.body.fast_breathing,
-     row.oxygen_saturation = req.body.oxygen_saturation,
-     row.breathing_rate = req.body.breathing_rate,
-     row.baby_chest_indrawing = req.body.baby_chest_indrawing,
-     row.x_ray_result = req.body.x_ray_result,
-     row.x_ray_status_done = req.body.x_ray_status_done,
-     row.x_ray_status = req.body.x_ray_status,
-     row.x_ray_diagnosis_any_other = req.body.x_ray_diagnosis_any_other,
-     row.apnea_diagnosis = req.body.apnea_diagnosis,
-     row.apnea_status = req.body.apnea_status,
-     row.baby_respiratory_support =baby_respiratory_support,
-     row.baby_respiratory_support_if_yes = req.body.baby_respiratory_support_if_yes,
-     row.tab_name = req.body.tab_name
-     return row.save()
+     var result = mapper.updateBabyRespMapper(result[0],req,baby_respiratory_support)
+     return result.save()
        }
    })
    .then(result=>{
@@ -600,29 +488,17 @@ exports.updateBabyCVModel =(req,res,next)=>{
       {
         study_id:req.params.study_id,
         reading :req.params.reading
-      }
+      },
+      order:[
+        ['createdAt', 'DESC']
+       ],
+       limit: 1
     }).then(result => {
      if(result.length == 0){
-     
       res.json( responseHelper.notFound(constant.no_record_found))
-
      }else{
-     var row = result[0]
-     row.heart_rate= req.body.heart_rate ,
-     row.urine_output=req.body.urine_output,
-     row.baby_blood_pressure_mean_arterial_bp= req.body.baby_blood_pressure_mean_arterial_bp,
-     row.baby_blood_pressure_upper_limb=req.body.baby_blood_pressure_upper_limb ,
-     row.baby_blood_pressure_lower_limb=req.body.baby_blood_pressure_lower_limb ,
-     row.capillary_refill_unit=req.body.capillary_refill_unit ,
-     row.low_peripheral_pulse_volume=req.body.low_peripheral_pulse_volume ,
-     row.cool_peripheries=req.body.cool_peripheries,
-     row.two_d_echo_done=req.body.two_d_echo_done ,
-     row.two_d_echo_done_if_yes= req.body.two_d_echo_done_if_yes,
-     row.baby_on_ionotropes= req.body.baby_on_ionotropes ,
-     row.central_line= req.body.central_line,
-     row.skin_pustules= req.body.skin_pustules,
-     row.infusion_of_blood_products=req.body.infusion_of_blood_products
-     return row.save()
+     var result = mapper.updateBabyCVMapper(result[0],req)
+     return result.save()
      }
    })
    .then(result=>{
@@ -649,9 +525,7 @@ exports.updateBabyCNSModel = (req,res,next)=>{
       }
     }).then(result => {
      if(result.length == 0){
-     
       res.json( responseHelper.notFound(constant.no_record_found))
-
      }else{
      var row = result[0]
      row.features_of_encephalopathy= req.body.features_of_encephalopathy,
@@ -726,53 +600,10 @@ exports.updateBabyInvestigationModel = (req,res,next)=>{
       }
     }).then(result => {
      if(result.length == 0){
-    
       res.json( responseHelper.notFound(constant.no_record_found))
-
      }else{
-     var row = result[0]
-     row.baby_thyroid_status= req.body.baby_thyroid_status,
-     row.baby_thyroid_result= req.body.baby_thyroid_result,
-     row.baby_blood_glucose= req.body.baby_blood_glucose,
-     row.baby_haemoglobin_levels= req.body.baby_haemoglobin_levels,
-     row.baby_c_reactive_protien_levels= req.body.baby_c_reactive_protien_levels,
-     row.micro_esr=req.body.micro_esr,
-     row.baby_procalcitonin_levels=req.body.baby_procalcitonin_levels,
-     row.total_leucocute_count_unit=req.body.total_leucocute_count_unit,
-     row.total_leucocute_count=req.body.total_leucocute_count,
-     row.absolute_neutrophil_count=req.body.absolute_neutrophil_count,
-     row.absolute_neutrophil_count_unit=req.body.absolute_neutrophil_count_unit,
-     row.immature_to_mature_neutrophil_ratios=req.body.immature_to_mature_neutrophil_ratios,
-     row.thrombocytopenia_unit=req.body.thrombocytopenia_unit,
-     row.thrombocytopenia=req.body.thrombocytopenia,
-     row.urine_rest_for_pus_cells=req.body.urine_rest_for_pus_cells,
-     row.urine_culture_test=req.body.urine_culture_test,
-     row.blood_culture_report=req.body.blood_culture_report,
-     row.gram_positive_bacteria=req.body.gram_positive_bacteria,
-     row.gram_positive_bacteria_if_other=req.body.gram_positive_bacteria_if_other,
-     row.gram_negative_bacteria=req.body.gram_negative_bacteria,
-     row.gram_negative_bacteria_if_other=req.body.gram_negative_bacteria_if_other,
-     row.fungi=req.body.fungi,
-     row.other_organism=req.body.other_organism,
-     row.antibiotic_status_resisitant=req.body.antibiotic_status_resisitant,
-     row.antibiotic_status_intermediate=req.body.antibiotic_status_intermediate,
-     row.antibiotic_status_value=req.body.antibiotic_status_value,
-     row.sodium=req.body.sodium,
-     row.potassium=req.body.potassium,
-     row.chlorine=req.body.chlorine,
-     row.calcium= req.body.calcium,
-     row.phosphate= req.body.phosphate,
-     row.magnesium=req.body.magnesium,
-     row.urea=req.body.urea,
-     row.creatinine=req.body.creatinine,
-     row.lactate_levels=req.body.lactate_levels,
-     row.bilirubin_levels=req.body.bilirubin_levels,
-     row.cord_ph=req.body.cord_ph,
-     row.arrhythmia=req.body.arrhythmia,
-     row.csf_culture=req.body.csf_culture,
-     row.csf_culture_tsb_value=req.body.csf_culture_tsb_value,
-     row.tab_name=req.body.tab_name
-     return row.save()
+     var result = mapper.updateBabyInvestigationMapper(result[0],req)
+     return result.save()
      }
    })
    .then(result=>{
