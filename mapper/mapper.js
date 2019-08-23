@@ -194,6 +194,59 @@ updateBabyInvestigationMapper :(result , req )=>{
      result.csf_culture_tsb_value=req.body.csf_culture_tsb_value,
      result.tab_name=req.body.tab_name
      return result
+},
+updateBabyCNSMapper:(result,req)=>{
+     result.features_of_encephalopathy= req.body.features_of_encephalopathy,
+     result.seizures= req.body.seizures,
+     result.abnormal_movements_like_tonic_posturing= req.body.abnormal_movements_like_tonic_posturing,
+     result.af_bulge= req.body.af_bulge,
+     result.tab_name= req.body.tab_name  
+     return result 
+},
+updateBabyGITMapper:(result,req)=>{
+     result.abdominal_dystension= req.body.abdominal_dystension,
+     result.frequency_of_stools= req.body.frequency_of_stools,
+     result.diarrhea= req.body.diarrhea,
+     result.vomiting= req.body.vomiting,
+     result.feeding_intolerance= req.body.feeding_intolerance,
+     result.baby_movement=req.body.baby_movement,
+     result.tab_name= req.body.tab_name
+     return result
+},
+updateBabyAntibioticMapper:(result,req)=>{
+     result.antibiotic_given= req.body.antibiotic_given,
+     result.date_of_administration_of_antiobiotic= req.body.date_of_administration_of_antiobiotic,
+     result.time_of_administration_of_antiobiotic_hours=req.body.time_of_administration_of_antiobiotic_hours,
+     result.time_of_administration_of_antiobiotic_minute=req.body.time_of_administration_of_antiobiotic_minute,
+     result.antibiotic_name= req.body.antibiotic_name,
+     result.antibiotic_name_if_other= req.body.antibiotic_name_if_other,
+     result.date_of_blood_samples_sent_for_culture_test= req.body.date_of_blood_samples_sent_for_culture_test,
+     result.time_of_blood_samples_sent_for_culture_test_hours= req.body.time_of_blood_samples_sent_for_culture_test_hours,
+     result.time_of_blood_samples_sent_for_culture_test_minute= req.body.time_of_blood_samples_sent_for_culture_test_minute,
+     result.blood_sample_taken_prior_to_antiobiotic_administration= req.body.blood_sample_taken_prior_to_antiobiotic_administration
+     return result
+},
+updateBabyFinalModel:(result,req)=>{
+      result.days_of_stay_in_hospital= req.body.days_of_stay_in_hospital,
+      result.final_diagnosis_sepsis=req.body.final_diagnosis_sepsis,
+      result.final_diagnosis_rds= req.body.final_diagnosis_rds,
+      result.final_diagnosis_ttnb=req.body.final_diagnosis_ttnb,
+      result.final_diagnosis_jaundice=req.body.final_diagnosis_jaundice,
+      result.final_diagnosis_lbw=req.body.final_diagnosis_lbw,
+      result.final_diagnosis_lga=req.body.final_diagnosis_lga,
+      result.final_diagnosis_aga=req.body.final_diagnosis_aga,
+      result.final_diagnosis_anemia= req.body.final_diagnosis_anemia,
+      result.final_diagnosis_dextochordia=req.body.final_diagnosis_dextochordia,
+      result.final_diagnosis_hypoglycemia=req.body.final_diagnosis_hypoglycemia,
+      result.final_diagnosis_hypocalcemia=req.body.final_diagnosis_hypocalcemia,
+      result.final_diagnosis_gastroenteritis=req.body.final_diagnosis_gastroenteritis,
+      result.final_diagnosis_perinatal_respiratory_depression=req.body.final_diagnosis_perinatal_respiratory_depression,
+      result.final_diagnosis_shock=req.body.final_diagnosis_shock,
+      result.final_diagnosis_feeding_intolerence=req.body.final_diagnosis_feeding_intolerence,
+      result.baby_discharge_date=req.body.baby_discharge_date,
+      result.final_diagnosis_sga=req.body.final_diagnosis_sga,
+      result.final_diagnosis_eos_los=req.body.final_diagnosis_eos_los,
+      result.final_diagnosis_other=req.body.final_diagnosis_other
+      return result
 }
-
 }

@@ -510,9 +510,7 @@ exports.updateBabyCVModel =(req,res,next)=>{
 }
 
 exports.updateBabyCNSModel = (req,res,next)=>{
-  
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
@@ -527,13 +525,8 @@ exports.updateBabyCNSModel = (req,res,next)=>{
      if(result.length == 0){
       res.json( responseHelper.notFound(constant.no_record_found))
      }else{
-     var row = result[0]
-     row.features_of_encephalopathy= req.body.features_of_encephalopathy,
-     row.seizures= req.body.seizures,
-     row.abnormal_movements_like_tonic_posturing= req.body.abnormal_movements_like_tonic_posturing,
-     row.af_bulge= req.body.af_bulge,
-     row.tab_name= req.body.tab_name   
-     return row.save()
+     var result = mapper.updateBabyCNSMapper(result[0],req) 
+     return result.save()
      }
    })
    .then(result=>{
@@ -545,14 +538,11 @@ exports.updateBabyCNSModel = (req,res,next)=>{
 }
 
 exports.updateBabyGITModel= (req,res,next)=>{
-  
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
   }
-  
   pReadingModels.baby_git_model.findAll(
     { where :
       {
@@ -561,19 +551,10 @@ exports.updateBabyGITModel= (req,res,next)=>{
       }
     }).then(result => {
      if(result.length == 0){
-      
       res.json( responseHelper.notFound(constant.no_record_found))
-
      }else{
-     var row = result[0]
-   row .abdominal_dystension= req.body.abdominal_dystension,
-   row. frequency_of_stools= req.body.frequency_of_stools,
-   row.diarrhea= req.body.diarrhea,
-   row.vomiting= req.body.vomiting,
-   row.feeding_intolerance= req.body.feeding_intolerance,
-   row.baby_movement=req.body.baby_movement,
-   row.tab_name= req.body.tab_name
-     return row.save()
+     var result = mapper.updateBabyGITMapper(result[0],req) 
+     return result.save()
      }
    })
    .then(result=>{
@@ -585,9 +566,7 @@ exports.updateBabyGITModel= (req,res,next)=>{
 }
 
 exports.updateBabyInvestigationModel = (req,res,next)=>{
-
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
@@ -615,14 +594,11 @@ exports.updateBabyInvestigationModel = (req,res,next)=>{
 }
 
 exports.updateBabyAntibioticModel =(req,res,next)=>{
-  
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
   }
-  
   pReadingModels.baby_antibiotic_model.findAll(
     { where :
       {
@@ -631,24 +607,12 @@ exports.updateBabyAntibioticModel =(req,res,next)=>{
       }
     }).then(result => {
      if(result.length == 0){
-
       res.json( responseHelper.notFound(constant.no_record_found))
-
      }else{
-     var row = result[0]
-     row.antibiotic_given= req.body.antibiotic_given,
-     row.date_of_administration_of_antiobiotic= req.body.date_of_administration_of_antiobiotic,
-     row.time_of_administration_of_antiobiotic_hours=req.body.time_of_administration_of_antiobiotic_hours,
-     row.time_of_administration_of_antiobiotic_minute=req.body.time_of_administration_of_antiobiotic_minute,
-     row.antibiotic_name= req.body.antibiotic_name,
-     row.antibiotic_name_if_other= req.body.antibiotic_name_if_other,
-     row.date_of_blood_samples_sent_for_culture_test= req.body.date_of_blood_samples_sent_for_culture_test,
-     row.time_of_blood_samples_sent_for_culture_test_hours= req.body.time_of_blood_samples_sent_for_culture_test_hours,
-     row.time_of_blood_samples_sent_for_culture_test_minute= req.body.time_of_blood_samples_sent_for_culture_test_minute,
-     row.blood_sample_taken_prior_to_antiobiotic_administration= req.body.blood_sample_taken_prior_to_antiobiotic_administration
-     return row.save()
+     var result = mapper.updateBabyAntibioticMapper(result[0],req)
+     return result.save()
      }
-   })
+  })
    .then(result=>{
     res.json( responseHelper.success(constant.data_updated_successfully,req.body))
     })
@@ -658,9 +622,7 @@ exports.updateBabyAntibioticModel =(req,res,next)=>{
 }
 
 exports.updateBabyFinalModel =(req,res,next)=>{  
-  
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
       return;
@@ -673,32 +635,10 @@ exports.updateBabyFinalModel =(req,res,next)=>{
       }
     }).then(result => {
      if(result.length == 0){
-      
       res.json( responseHelper.notFound(constant.no_record_found))
-   
     }else{
-      var row = result[0]
-      row.days_of_stay_in_hospital= req.body.days_of_stay_in_hospital,
-      row.final_diagnosis_sepsis=req.body.final_diagnosis_sepsis,
-      row.final_diagnosis_rds= req.body.final_diagnosis_rds,
-      row.final_diagnosis_ttnb=req.body.final_diagnosis_ttnb,
-      row.final_diagnosis_jaundice=req.body.final_diagnosis_jaundice,
-      row.final_diagnosis_lbw=req.body.final_diagnosis_lbw,
-      row.final_diagnosis_lga=req.body.final_diagnosis_lga,
-      row.final_diagnosis_aga=req.body.final_diagnosis_aga,
-      row.final_diagnosis_anemia= req.body.final_diagnosis_anemia,
-      row.final_diagnosis_dextochordia=req.body.final_diagnosis_dextochordia,
-      row.final_diagnosis_hypoglycemia=req.body.final_diagnosis_hypoglycemia,
-      row.final_diagnosis_hypocalcemia=req.body.final_diagnosis_hypocalcemia,
-      row.final_diagnosis_gastroenteritis=req.body.final_diagnosis_gastroenteritis,
-      row.final_diagnosis_perinatal_respiratory_depression=req.body.final_diagnosis_perinatal_respiratory_depression,
-      row.final_diagnosis_shock=req.body.final_diagnosis_shock,
-      row.final_diagnosis_feeding_intolerence=req.body.final_diagnosis_feeding_intolerence,
-      row.baby_discharge_date=req.body.baby_discharge_date,
-      row.final_diagnosis_sga=req.body.final_diagnosis_sga,
-      row.final_diagnosis_eos_los=req.body.final_diagnosis_eos_los,
-      row.final_diagnosis_other=req.body.final_diagnosis_other
-      return row.save()
+      var result = mapper.updateBabyAntibioticMapper(result[0],req)
+      return result.save()
      }
    })
    .then(result=>{
